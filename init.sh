@@ -12,7 +12,5 @@ echo "UID:GID - $PUID:$PGID"
 groupmod -o -g "$PGID" $USER
 usermod -o -u "$PUID" $USER
 
-cd /data
-
 # CMD
-sudo -H -E -u $USER /transcode.sh
+sudo -H -E -u $USER /transcode

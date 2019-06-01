@@ -14,6 +14,7 @@ RUN apt-get update \
  && apt-get update \
  && apt-get install -y \
      handbrake-cli \
+     sudo \
  && apt-get remove -y \
     software-properties-common \
  && apt-get autoremove -y \
