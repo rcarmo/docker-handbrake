@@ -28,6 +28,7 @@ ENV PGID=1000
 ENV PUID=1000
 
 WORKDIR /data
+VOLUME /data
 CMD ["/init"]
 
 ARG VCS_REF
