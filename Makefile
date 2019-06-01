@@ -10,12 +10,11 @@ export BASE=ubuntu:18.04
 -include .env
 
 default:
-	echo "\n\n\n*** Building $(BUNDLE) $(TAG) for $(ARCH) ***\n\n\n" && \
 	docker build --build-arg BUILD_DATE=$(BUILD_DATE) \
 	        --build-arg BASE=$(BASE) \
 		--build-arg VCS_REF=$(VCS_REF) \
 		--build-arg VCS_URL=$(VCS_URL) \
-		-t $(IMAGE_NAME):latest . 
+		-t $(IMAGE_NAME) . 
 
 
 push:
@@ -25,6 +24,5 @@ push:
 clean:
 	-docker rm -fv $$(docker ps -a -q -f status=exited)
 	-docker rmi -f $$(docker images -q -f dangling=true)
-	-docker rmi -f $(BUILD_IMAGE_NAME)
 	-docker rmi -f $$(docker images --format '{{.Repository}}:{{.Tag}}' | grep $(IMAGE_NAME))
 
