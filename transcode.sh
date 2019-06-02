@@ -5,7 +5,8 @@ fi
 
 if [ -z "${PAUSES}" ]; then 
   # Pause before enumeration
-  sleep $((RANDOM % 9))
+  echo "Pausing..."
+  sleep $((RANDOM % 17))
 fi
 
 FILES=*.${EXTENSION}
@@ -14,7 +15,8 @@ do
     export TARGET="${FILE%.$EXTENSION}.mp4"
     if [ -z "${PAUSES}" ]; then 
        # Pause before check
-       sleep $((RANDOM % 9))
+       echo "Pausing..."
+       sleep $((RANDOM % 11))
     fi
     if [ ! -e "$TARGET" ]
     then
