@@ -3,10 +3,15 @@ if [ -z "${EXTENSION}" ]; then
    EXTENSION=mkv
 fi
 
-FILES=*.$EXTENSION
+# Pause before enumeration
+sleep $((RANDOM % 9))
+
+FILES=*.${EXTENSION}
 for FILE in $FILES
 do
     export TARGET="${FILE%.$EXTENSION}.mp4"
+    # Pause before check
+    sleep $((RANDOM % 9))
     if [ ! -e "$TARGET" ]
     then
         echo "$FILE -> $TARGET"
