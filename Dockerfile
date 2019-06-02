@@ -26,6 +26,8 @@ ENV EXTENSION=mkv
 # Allow user to set uid/gid for Docker process
 ENV PGID=1000
 ENV PUID=1000
+ENV PAUSES="false"
+ENV ENCODER="H.264"
 
 WORKDIR /data
 VOLUME /data
