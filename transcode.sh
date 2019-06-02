@@ -3,7 +3,7 @@ if [ -z "${EXTENSION}" ]; then
    EXTENSION=mkv
 fi
 
-if [ "$PAUSES" == "false" ]; then 
+if [ "$PAUSES" != "false" ]; then 
   # Pause before enumeration
   echo "Pausing..."
   sleep $((RANDOM % 17))
@@ -13,7 +13,7 @@ FILES=*.${EXTENSION}
 for FILE in $FILES
 do
     export TARGET="${FILE%.$EXTENSION}.mp4"
-    if [ "$PAUSES" == "false" ]; then 
+    if [ "$PAUSES" != "false" ]; then 
        # Pause before check
        echo "Pausing..."
        sleep $((RANDOM % 11))
