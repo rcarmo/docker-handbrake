@@ -40,8 +40,9 @@ do
           if [ ! -z "$SCRATCH_FOLDER" ]; then
               cd "$WORKDIR"
               mv "$SCRATCH_FOLDER/$TARGET" "$TARGET"
+              rm -f "$FILE"
           fi
-          rm "$MARKER"
+          rm -f "$MARKER"
         fi
     fi
 done
