@@ -11,6 +11,7 @@ if [ "$PAUSES" != "false" ]; then
 fi
 
 FILES=*.${EXTENSION}
+WORKDIR="$(pwd)"
 for FILE in $FILES
 do
     export TARGET="${FILE%.$EXTENSION}.mp4"
@@ -22,11 +23,11 @@ do
     fi
     if [ ! -e "$MARKER" ]
     then
-        touch $MARKER
-        echo `hostname` > $MARKER
+        touch "$MARKER"
+        echo `hostname` > "$MARKER"
         if [ ! -z "$SCRATCH_FOLDER" ]; then
             cp "$FILE" "$SCRATCH_FOLDER/$FILE"
-            pushd $SCRATCH_FOLDER
+            cd "$SCRATCH_FOLDER"
         fi
         echo "$FILE -> $TARGET"
         if [ "$AUDIO_CODEC" == "AAC" ]; then
@@ -37,7 +38,7 @@ do
         if [ $? -eq 0 ]; then
           rm "$FILE"
           if [ ! -z "$SCRATCH_FOLDER" ]; then
-              popd
+              cd "$WORKDIR"
               mv "$SCRATCH_FOLDER/$TARGET" "$TARGET"
           fi
           rm "$MARKER"
