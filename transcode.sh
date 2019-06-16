@@ -42,7 +42,7 @@ do
               mv "$SCRATCH_FOLDER/$TARGET" "$TARGET"
               rm -f "$FILE"
           fi
-          rm -f "$MARKER"
         fi
+        rm -f "$MARKER"
     fi
 done
