@@ -4,7 +4,7 @@ export VCS_URL=https://github.com/insightfulsystems/node-red
 export BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
 export TAG_DATE=`date -u +"%Y%m%d"`
 export TARGET_ARCHITECTURES=amd64
-export BASE=ubuntu:18.04
+export BASE=ubuntu:18.10
 
 # Permanent local overrides
 -include .env
