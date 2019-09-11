@@ -6,6 +6,8 @@ MAINTAINER Rui Carmo https://github.com/rcarmo
 ADD init.sh /init
 ADD transcode.sh /transcode
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update \
  && apt-get dist-upgrade -y \
  && apt-get install -y \
