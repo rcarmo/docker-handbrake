@@ -14,7 +14,9 @@ RUN apt-get update \
  && apt-get update \
  && apt-get install -y \
      handbrake-cli \
+     libdvd-pkg \
      sudo \
+ && dpkg-reconfigure libdvd-pkg \
  && apt-get remove -y \
     software-properties-common \
  && apt-get autoremove -y \
