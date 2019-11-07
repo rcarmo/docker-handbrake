@@ -5,6 +5,8 @@ MAINTAINER Rui Carmo https://github.com/rcarmo
 
 ADD init.sh /init
 ADD transcode.sh /transcode
+ADD h265aac.json /transcode
+ADD h265ac3.json /transcode
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -26,12 +28,12 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && chmod +x /init /transcode
 
-ENV EXTENSION=mkv
 # Allow user to set uid/gid for Docker process
 ENV PGID=1000
 ENV PUID=1000
+ENV EXTENSION=mkv
 ENV PAUSES="false"
-ENV VIDEO_CODEC="H.264"
+ENV VIDEO_CODEC="H.265"
 ENV AUDIO_CODEC="AC3"
 ENV SCRATCH_FOLDER=""
 
