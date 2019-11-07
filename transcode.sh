@@ -13,8 +13,7 @@ if [ -z "${VIDEO_CODEC}" ]; then
 fi
 
 WORKDIR="$(pwd)"
-#ls *.$EXTENSION | shuf | while read FILE; do
-for FILE in *.$EXTENSION; do
+ls *.$EXTENSION | shuf | while read FILE; do #for FILE in *.$EXTENSION; do
     export TARGET="${FILE%.$EXTENSION}.mp4"
     export MARKER="${FILE%.$EXTENSION}.lock"
     if [ "$PAUSES" != "false" ]; then 
