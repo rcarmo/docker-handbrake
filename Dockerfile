@@ -5,8 +5,8 @@ MAINTAINER Rui Carmo https://github.com/rcarmo
 
 ADD init.sh /init
 ADD transcode.sh /transcode
-ADD h265aac.json /transcode
-ADD h265ac3.json /transcode
+ADD h265aac.json /h265aac.json 
+ADD h265ac3.json /h265ac3.json 
 
 ENV DEBIAN_FRONTEND noninteractive
 

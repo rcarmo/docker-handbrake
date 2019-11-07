@@ -38,9 +38,9 @@ ls *.$EXTENSION | shuf | while read FILE; do #for FILE in *.$EXTENSION; do
             fi
         else
             if [ "$AUDIO_CODEC" == "AAC" ]; then
-                HandBrakeCLI -i "_$FILE" -o "$TARGET" --preset-import-file /transcode/h265aac.json --preset "H.265 MP4"
+                HandBrakeCLI -i "_$FILE" -o "$TARGET" --preset-import-file /h265aac.json --preset "H.265 MP4"
             else
-                HandBrakeCLI -i "_$FILE" -o "$TARGET" --preset-import-file /transcode/h265ac3.json --preset "H.265 MP4"
+                HandBrakeCLI -i "_$FILE" -o "$TARGET" --preset-import-file /h265ac3.json --preset "H.265 MP4"
             fi
         fi
         if [ $? -eq 0 ]; then
