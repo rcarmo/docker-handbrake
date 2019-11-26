@@ -13,7 +13,8 @@ if [ -z "${VIDEO_CODEC}" ]; then
 fi
 
 WORKDIR="$(pwd)"
-ls *.$EXTENSION | shuf | while read FILE; do #for FILE in *.$EXTENSION; do
+
+encode_file () {
     export TARGET="${FILE%.$EXTENSION}.mp4"
     export MARKER="${FILE%.$EXTENSION}.lock"
     if [ "$PAUSES" != "false" ]; then 
@@ -51,5 +52,18 @@ ls *.$EXTENSION | shuf | while read FILE; do #for FILE in *.$EXTENSION; do
         fi
         rm -f "$MARKER"
     fi
-done
+}
 
+if [ ! -z "${RANDOM}" ]; then
+    ls *.$EXTENSION | shuf | while read FILE; do 
+        echo "----> Picked $FILE"
+        encode_file()
+        echo "----> Done encoding $FILE"
+    done
+else
+    for FILE in *.$EXTENSION; do
+        echo "----> Encoding $FILE"
+        encode_file()
+        echo "----> Done encoding $FILE"
+    done
+fi
