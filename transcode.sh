@@ -57,13 +57,13 @@ encode_file () {
 if [ ! -z "${RANDOM}" ]; then
     ls *.$EXTENSION | shuf | while read FILE; do 
         echo "----> Picked $FILE"
-        encode_file()
+        encode_file
         echo "----> Done encoding $FILE"
     done
 else
     for FILE in *.$EXTENSION; do
         echo "----> Encoding $FILE"
-        encode_file()
+        encode_file
         echo "----> Done encoding $FILE"
     done
 fi
