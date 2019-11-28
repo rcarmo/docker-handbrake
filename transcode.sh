@@ -54,7 +54,7 @@ encode_file () {
     fi
 }
 
-if [ "$RANDOM" = true ]; then
+if [ "$RANDOM_PICK" = true ]; then
     ls *.$EXTENSION | shuf | while read FILE; do 
         echo "----> Picked $FILE"
         encode_file
