@@ -12,9 +12,16 @@ This is a container for running `handbrake-cli` on non-Ubuntu systems, in order 
 ## Usage
 
 ```
-docker run -it -e PUID=1001 -e PGID=1001 --cpuset-cpus 8-15 -e EXTENSION=ts -e AUDIO_CODEC=AC3 -v "$PWD:/data" rcarmo/handbrake
+docker run -it \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e EXTENSION=ts \
+  -e AUDIO_CODEC=AC3 \
+  -v "$PWD:/data" \
+  --cpuset-cpus 8-15 \
+  rcarmo/handbrake
 ```
 
-This will go over all `*.ts` files in `/tmp` and transcode them to an `.mp4` envelope with 5.1 audio, preserving subtitles (where applicable). 
+This will go over all `*.ts` files in the current working directory and transcode them to an `.mp4` envelope with 5.1 audio, preserving subtitles (where applicable) and using only the specified CPU cores.
 
 The default `EXTENSION` is now `mkv` by popular demand, but see `transcode.sh` for details.
