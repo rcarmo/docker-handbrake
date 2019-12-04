@@ -17,6 +17,7 @@ WORKDIR="$(pwd)"
 encode_file () {
     export TARGET="${FILE%.$EXTENSION}.mp4"
     export MARKER="${FILE%.$EXTENSION}.lock"
+    export METADATA="${FILE%.$EXTENSION}.nfo"
     if [ "$PAUSES" != "false" ]; then 
        # Pause before check
        echo "Pausing..."
@@ -44,6 +45,7 @@ encode_file () {
         fi
         if [ $? -eq 0 ]; then
             rm -f "$FILE"
+            rm -f "$METADATA" # remove old Plex metadata
             if [ ! -z "$SCRATCH_FOLDER" ]; then
                 rm -f "$SCRATCH_FOLDER/$FILE"                
                 cd "$WORKDIR"
