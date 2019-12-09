@@ -20,7 +20,7 @@ encode_file () {
     export METADATA="${FILE%.$EXTENSION}.nfo"
     if [ "$PAUSES" != "false" ]; then 
        # Pause before check
-       echo "Pausing..."
+       echo "....> Pausing <...."
        sleep $((RANDOM % 11))
     fi
     if [ ! -e "$MARKER" ]; then
@@ -29,6 +29,7 @@ encode_file () {
             cp "$FILE" "$SCRATCH_FOLDER/$FILE"
             cd "$SCRATCH_FOLDER"
         fi
+        echo "----> Currently in $PWD"
         echo "$FILE -> $TARGET"
         if [ "$VIDEO_CODEC" == "H.264" ]; then
             if [ "$AUDIO_CODEC" == "AAC" ]; then
@@ -44,14 +45,19 @@ encode_file () {
             fi
         fi
         if [ $? -eq 0 ]; then
+            echo "----> Currently in $PWD"
             rm -f "$FILE"
             rm -f "$METADATA" # remove old Plex metadata
             if [ ! -z "$SCRATCH_FOLDER" ]; then
+                echo "----> Removing original file in $SCRATCH_FOLDER"
                 rm -f "$SCRATCH_FOLDER/$FILE"                
+                echo "----> Moving new file to $WORKDIR"
+                mv "$SCRATCH_FOLDER/$TARGET" "$WORKDIR/$TARGET"
                 cd "$WORKDIR"
-                mv "$SCRATCH_FOLDER/$TARGET" "$TARGET"
+                echo "----> Currently in $PWD"
             fi
         fi
+        echo "----> Removing lock inside $PWD"
         rm -f "$MARKER"
     fi
 }
