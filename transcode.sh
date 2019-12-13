@@ -12,7 +12,7 @@ if [ -z "${VIDEO_CODEC}" ]; then
    VIDEO_CODEC=H.265
 fi
 
-WORKDIR="$(pwd)"
+export WORKDIR="$PWD"
 
 encode_file () {
     export TARGET="${FILE%.$EXTENSION}.mp4"
