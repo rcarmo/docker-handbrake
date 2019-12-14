@@ -21,11 +21,11 @@ encode_file () {
     export METADATA="${FILE%.$EXTENSION}.nfo"
     if [ "$PAUSES" != "false" ]; then 
        # Pause before check
-       echo "====> Pausing" >> "$LOGFILE"  
        sleep 5
        sleep $((RANDOM % 11))
     fi
     if [ ! -e "$MARKER" ]; then
+        echo "====> Processing $FILE" >> "$LOGFILE"
         echo `hostname` > "$MARKER"
         if [ ! -z "$SCRATCH_FOLDER" ]; then
             cp "$FILE" "$SCRATCH_FOLDER/$FILE"
@@ -61,19 +61,16 @@ encode_file () {
         fi
         echo "====> Removing lock inside $PWD" >> "$LOGFILE"
         rm -f "$MARKER"
+        echo "====> Done encoding $FILE" >> "$LOGFILE"
     fi
 }
 
 if [ "$RANDOM_PICK" = true ]; then
     ls *.$EXTENSION | shuf | while read FILE; do 
-        echo "====> Picked $FILE" >> "$LOGFILE"
         encode_file
-        echo "====> Done encoding $FILE" >> "$LOGFILE"
     done
 else
     for FILE in *.$EXTENSION; do
-        echo "====> Encoding $FILE" >> "$LOGFILE"
         encode_file
-        echo "====> Done encoding $FILE" >> "$LOGFILE"
     done
 fi
