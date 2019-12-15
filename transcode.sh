@@ -24,7 +24,7 @@ encode_file () {
        sleep 5
        sleep $((RANDOM % 11))
     fi
-    if [ ! -e "$MARKER" ]; then
+    if [ ! -f "$MARKER" ]; then
         echo "====> Processing $FILE" >> "$LOGFILE"
         echo `hostname` > "$MARKER"
         if [ ! -z "$SCRATCH_FOLDER" ]; then
