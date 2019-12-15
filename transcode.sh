@@ -17,7 +17,7 @@ export WORKDIR="$PWD"
 encode_file () {
     export TARGET="${FILE%.$EXTENSION}.mp4"
     export MARKER="${FILE%.$EXTENSION}.lock"
-    export LOGFILE="${FILE%.$EXTENSION}.log"
+    export LOGFILE="$WORKDIR/${FILE%.$EXTENSION}.log"
     export METADATA="${FILE%.$EXTENSION}.nfo"
     if [ "$PAUSES" != "false" ]; then 
        # Pause before check
