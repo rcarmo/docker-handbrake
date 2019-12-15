@@ -56,6 +56,7 @@ encode_file () {
                 echo "====> Moving new file to $WORKDIR" >> "$LOGFILE"
                 mv "$SCRATCH_FOLDER/$TARGET" "$WORKDIR/$TARGET"
                 cd "$WORKDIR"
+                rm -f "$FILE"
                 echo "====> Currently in $PWD" >> "$LOGFILE"
             fi
         fi
