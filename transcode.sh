@@ -26,7 +26,7 @@ encode_file () {
     fi
     if [ ! -f "$MARKER" ]; then
         echo "====> Processing $FILE" >> "$LOGFILE"
-        echo `hostname` > "$MARKER"
+        echo "$HOSTNAME" > "$MARKER"
         if [ ! -z "$SCRATCH_FOLDER" ]; then
             echo "====> Copying $FILE to $SCRATCH_FOLDER" >> "$LOGFILE"
             cp "$FILE" "$SCRATCH_FOLDER/$FILE"
