@@ -19,6 +19,7 @@ RUN apt-get update \
  && apt-get install -y \
      handbrake-cli \
      libdvd-pkg \
+     ffmpeg \
      sudo \
  && dpkg-reconfigure libdvd-pkg \
  && apt-get remove -y \
