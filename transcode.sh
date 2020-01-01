@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s nullglob
+
 if [ -z "${EXTENSION}" ]; then 
    EXTENSION=mkv
 fi
