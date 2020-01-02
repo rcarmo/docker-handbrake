@@ -55,7 +55,7 @@ encode_file () {
             cd "$SCRATCH_FOLDER"
         fi
         echo "====> Currently in $PWD" >> "$LOGFILE"
-        detect_hdr()
+        detect_hdr
         echo "====> Transcoding $FILE -> $TARGET" >> "$LOGFILE" 
         if [ "$VIDEO_CODEC" == "H.264" ]; then
             if [ "$AUDIO_CODEC" == "AAC" ]; then
