@@ -100,7 +100,7 @@
       "VideoProfile" : "main",
       "VideoQSVAsyncDepth" : 4,
       "VideoQSVDecode" : false,
-      "VideoQualitySlider" : 24,
+      "VideoQualitySlider" : 22,
       "VideoQualityType" : 2,
       "VideoScaler" : "swscale",
       "VideoTune" : "",
