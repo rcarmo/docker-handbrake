@@ -16,7 +16,27 @@ fi
 
 export WORKDIR="$PWD"
 
+detect_hdr () {
+    PROBE_RESULT=$(ffprobe -show_streams -v error "${FILE}" | egrep "^color_transfer|^color_space=|^color_primaries=" | head -3)
+    for C in $PROBE_RESULT; do
+        if [[ "$C" = "color_space="* ]]; then
+                COLOR_SPACE=${C##*=}
+        elif [[ "$C" = "color_transfer="* ]]; then
+                COLOR_TRANSFER=${C##*=}
+        elif [[ "$C" = "color_primaries="* ]]; then
+                COLOR_PRIMARIES=${C##*=}
+        fi      
+    done    
+    if [ "${COLOR_SPACE}" = "bt2020nc" ] && [ "${COLOR_TRANSFER}" = "smpte2084" ] && [ "${COLOR_PRIMARIES}" = "bt2020" ]; then 
+        echo "====> $FILE is considered to be HDR" >> "$LOGFILE"
+        PRESET_SUFFIX="_hdr"
+    else
+        PRESET_SUFFIX=""
+    fi
+}
+
 encode_file () {
+    # These might be needed by sub-shells
     export TARGET="${FILE%.$EXTENSION}.mp4"
     export MARKER="${FILE%.$EXTENSION}.lock"
     export LOGFILE="$WORKDIR/${FILE%.$EXTENSION}.log"
@@ -35,6 +55,7 @@ encode_file () {
             cd "$SCRATCH_FOLDER"
         fi
         echo "====> Currently in $PWD" >> "$LOGFILE"
+        detect_hdr()
         echo "====> Transcoding $FILE -> $TARGET" >> "$LOGFILE" 
         if [ "$VIDEO_CODEC" == "H.264" ]; then
             if [ "$AUDIO_CODEC" == "AAC" ]; then
@@ -44,9 +65,9 @@ encode_file () {
             fi
         else
             if [ "$AUDIO_CODEC" == "AAC" ]; then
-                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /h265aac.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
+                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /h265aac${PRESET_SUFFIX}.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
             else
-                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /h265ac3.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
+                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /h265ac3${PRESET_SUFFIX}.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
             fi
         fi
         if [ $? -eq 0 ]; then
