@@ -97,7 +97,7 @@
       "VideoLevel" : "auto",
       "VideoOptionExtra" : "strong-intra-smoothing=0:rect=0",
       "VideoPreset" : "slow",
-      "VideoProfile" : "main",
+      "VideoProfile" : "auto",
       "VideoQSVAsyncDepth" : 4,
       "VideoQSVDecode" : false,
       "VideoQualitySlider" : 22,
