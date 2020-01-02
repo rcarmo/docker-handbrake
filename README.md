@@ -21,8 +21,8 @@ docker run -it \
   rcarmo/handbrake
 ```
 
-This will go over all `*.ts` files in the current working directory and transcode them to an `.mp4` envelope with 5.1 audio, preserving subtitles (where applicable) and using only the specified CPU cores. It will skip any file that has a companion with a `.lock` extension, and clean up the original files and `.log` files after it's done.
+This will go over all `*.ts` files in the current working directory and transcode them to an `.mp4` envelope with 5.1 audio, preserving subtitles (where applicable) and using only the specified CPU cores. It will skip any file that has a companion with a `.lock` extension, (optionally) copy the original file to a scratch folder for working in, and clean up the original files and `.log` files after it's done.
 
-The default source `EXTENSION` is now `mkv` by popular demand, and it also tries to encode HDR files with a 10-bit encoder when using H.265. 
+The default source `EXTENSION` is now `mkv` by popular demand, and it also tries to encode HDR files with a 10-bit encoder when using H.265.
 
 See `transcode.sh` for details.
