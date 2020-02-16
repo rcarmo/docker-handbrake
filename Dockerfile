@@ -16,7 +16,7 @@ RUN apt-get update \
  && apt-get dist-upgrade -y \
  && apt-get install -y \
     software-properties-common \
- && add-apt-repository ppa:stebbins/handbrake-releases \
+ && add-apt-repository ppa:stebbins/handbrake-git-snapshots \
  && apt-get update \
  && apt-get install -y \
      handbrake-cli \
