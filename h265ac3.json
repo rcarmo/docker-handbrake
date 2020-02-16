@@ -4,10 +4,12 @@
       "AlignAVStart" : true,
       "AudioCopyMask" : [
          "copy:aac",
-         "copy:ac3"
+         "copy:ac3",
+         "copy:eac3"
       ],
-      "AudioEncoderFallback" : "ca_aac",
+      "AudioEncoderFallback" : "aac",
       "AudioLanguageList" : [
+        "eng",
         "und"
       ],
       "AudioList" : [
@@ -15,7 +17,7 @@
           "AudioBitrate" : 448,
           "AudioCompressionLevel" : -1,
           "AudioDitherMethod" : "auto",
-          "AudioEncoder" : "copy:ac3",
+          "AudioEncoder" : "eac3",
           "AudioMixdown" : "5point1",
           "AudioNormalizeMixLevel" : false,
           "AudioSamplerate" : "48",
@@ -97,7 +99,7 @@
       "VideoLevel" : "auto",
       "VideoOptionExtra" : "strong-intra-smoothing=0:rect=0",
       "VideoPreset" : "medium",
-      "VideoProfile" : "main",
+      "VideoProfile" : "auto",
       "VideoQSVAsyncDepth" : 4,
       "VideoQSVDecode" : false,
       "VideoQualitySlider" : 23,
