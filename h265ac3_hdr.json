@@ -8,10 +8,7 @@
          "copy:eac3"
       ],
       "AudioEncoderFallback" : "ca_aac",
-      "AudioLanguageList" : [
-        "eng",
-        "und"
-      ],
+      "AudioLanguageList" : [],
       "AudioList" : [
         {
           "AudioBitrate" : 448,
@@ -31,7 +28,6 @@
       "AudioTrackSelectionBehavior" : "all",
       "ChapterMarkers" : true,
       "ChildrenArray" : [
-
       ],
       "Default" : false,
       "FileFormat" : "av_mp4",
@@ -83,9 +79,7 @@
       "SubtitleBurnBDSub" : false,
       "SubtitleBurnBehavior" : "none",
       "SubtitleBurnDVDSub" : false,
-      "SubtitleLanguageList" : [
-        "und"
-      ],
+      "SubtitleLanguageList" : [],
       "SubtitleTrackSelectionBehavior" : "all",
       "Type" : 1,
       "UsesPictureFilters" : true,
