@@ -44,3 +44,11 @@ echo "docker run -i -e PUID=1001 -e PGID=1001 --device /dev/dri --cpuset-cpus 8-
 
 # The container will then be run asyncrhonously and transcode every single *.mkv file in that folder into HEVC MP4
 ```
+
+## `flock`ing
+
+Another alternative if you don't want to rely on `atq` correctly estimating system load average is to use `flock` in `cron` like so:
+
+  0 1 * * * /usr/bin/flock -n /tmp/lockfile <your command>
+  
+This implicitly creates a queue, in that `flock` does not timeout or release the lock by default (check `man flock` for ways to soft fail)
