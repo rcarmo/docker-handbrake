@@ -1,4 +1,4 @@
-ARG BASE=ubuntu:22.04
+ARG BASE=ubuntu:20.04
 FROM ${BASE} as base
 
 MAINTAINER Rui Carmo https://github.com/rcarmo
