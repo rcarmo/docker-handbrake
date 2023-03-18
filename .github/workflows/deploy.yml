@@ -17,4 +17,4 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          image-name: ${{ github.repository }}
+          image: ${{ github.repository }}
