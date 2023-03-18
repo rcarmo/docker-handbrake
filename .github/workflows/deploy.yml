@@ -9,6 +9,8 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Login to Registry
         uses: docker/login-action@v2
         with:
