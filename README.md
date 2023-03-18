@@ -36,7 +36,7 @@ cd /mnt/incoming
 
 # batch uses (and restores) $PWD, so all we need to do is echo this into it
 
-echo "docker run -i -e PUID=1001 -e PGID=1001 --device /dev/dri --cpuset-cpus 8-15 -e AUDIO_CODEC=EAC3 -v "$PWD:/data" rcarmo/handbrake" | batch
+echo "docker run -i -e PUID=1001 -e PGID=1001 --device /dev/dri --cpuset-cpus 8-15 -e AUDIO_CODEC=EAC3 -v "$PWD:/data" ghcr.io/rcarmo/docker-handbrake" | batch
 
 # The container will then be run asyncrhonously and transcode every single *.mkv file in that folder into HEVC MP4
 ```
