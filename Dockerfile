@@ -1,4 +1,4 @@
-ARG BASE=ubuntu:20.04
+ARG BASE=ubuntu:22.04
 FROM ${BASE} as base
 
 MAINTAINER Rui Carmo https://github.com/rcarmo
@@ -16,7 +16,6 @@ RUN apt-get update \
  && apt-get dist-upgrade -y \
  && apt-get install -y \
     software-properties-common \
- && add-apt-repository ppa:stebbins/handbrake-releases \
  && apt-get update \
  && apt-get install -y \
      handbrake-cli \
