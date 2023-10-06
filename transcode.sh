@@ -71,7 +71,7 @@ encode_file () {
             fi
         fi
         echo "====> Testing $TARGET" >> "$LOGFILE"
-        ffprobe "$TARGET" 2>> "$LOGFILE"
+        stdbuf -oL -eL ffprobe "$TARGET" 2>> "$LOGFILE"
         if [ $? -eq 0 ]; then
             if [ ! -z "$SCRATCH_FOLDER" ]; then
                 echo "====> Removing original file in $SCRATCH_FOLDER" >> "$LOGFILE"
@@ -86,15 +86,14 @@ encode_file () {
             if [ ! -z "$SCRATCH_FOLDER" ]; then
                echo "====> Removing entire folder $SCRATCH_FOLDER" >> "$LOGFILE"
                rm -f "$SCRATCH_FOLDER"
-            else
-               rm -f "$TARGET"
             fi
+            rm -f "$WORKDIR/$TARGET"
             echo "====> Failed to encode $FILE" >> "$LOGFILE"
         fi
         cd "$WORKDIR"
-        echo "====> Removing lock and old metadata inside $PWD" >> "$LOGFILE"
+        echo "====> Removing lock and Plex metadata inside $PWD" >> "$LOGFILE"
         rm -f "$MARKER"
-        rm -f "$METADATA" # remove old Plex metadata
+        rm -f "$METADATA"
     fi
 }
 
