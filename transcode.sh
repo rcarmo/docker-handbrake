@@ -83,7 +83,12 @@ encode_file () {
             rm -f "$WORKDIR/$FILE"
             echo "====> Done encoding $FILE" >> "$LOGFILE"
         else
-            rm -f "$TARGET"
+            if [ ! -z "$SCRATCH_FOLDER" ]; then
+               echo "====> Removing entire folder $SCRATCH_FOLDER" >> "$LOGFILE"
+               rm -f "$SCRATCH_FOLDER"
+            else
+               rm -f "$TARGET"
+            fi
             echo "====> Failed to encode $FILE" >> "$LOGFILE"
         fi
         cd "$WORKDIR"
