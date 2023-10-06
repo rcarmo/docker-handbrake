@@ -70,6 +70,8 @@ encode_file () {
                 stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /h265ac3${PRESET_SUFFIX}.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
             fi
         fi
+        echo "====> Testing $TARGET" >> "$LOGFILE"
+        ffprobe "$TARGET" 2>> "$LOGFILE"
         if [ $? -eq 0 ]; then
             if [ ! -z "$SCRATCH_FOLDER" ]; then
                 echo "====> Removing original file in $SCRATCH_FOLDER" >> "$LOGFILE"
@@ -79,12 +81,15 @@ encode_file () {
             fi
             echo "====> Transcoding successful, removing $FILE" >> "$LOGFILE"
             rm -f "$WORKDIR/$FILE"
+            echo "====> Done encoding $FILE" >> "$LOGFILE"
+        else
+            rm -f "$TARGET"
+            echo "====> Failed to encode $FILE" >> "$LOGFILE"
         fi
         cd "$WORKDIR"
         echo "====> Removing lock and old metadata inside $PWD" >> "$LOGFILE"
         rm -f "$MARKER"
         rm -f "$METADATA" # remove old Plex metadata
-        echo "====> Done encoding $FILE" >> "$LOGFILE"
     fi
 }
 
