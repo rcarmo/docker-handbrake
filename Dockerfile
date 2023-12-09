@@ -22,7 +22,7 @@ RUN apt-get update \
      libdvd-pkg \
      ffmpeg \
      vainfo \
-     i965-va-driver \
+     i915-va-driver \
      intel-gpu-tools \
      sudo \
  && dpkg-reconfigure libdvd-pkg \
