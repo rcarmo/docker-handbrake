@@ -6,6 +6,11 @@ VAINFO_RESULT=$(vainfo)
 echo "====> vainfo output:" >> "$LOGFILE"
 echo "${VAINFO_RESULT}" >> "$LOGFILE"
 
+if [[ $VAINFO_RESULT == *"Intel iHD driver"* ]]; then
+   sed -i 's/"VideoEncoder" : "x265",/"VideoEncoder" : "qsv_h265",/g' /*.json
+   sed -i 's/"VideoQSVDecode" : false,/"VideoQSVDecode" : true,/g' /*.json
+fi
+
 if [ -z "${EXTENSION}" ]; then 
    EXTENSION=mkv
 fi
