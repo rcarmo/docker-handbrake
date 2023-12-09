@@ -3,12 +3,14 @@
 shopt -s nullglob
 
 VAINFO_RESULT=$(vainfo)
-echo "====> vainfo output:" >> "$LOGFILE"
-echo "${VAINFO_RESULT}" >> "$LOGFILE"
+    echo "====> vainfo output:" >> "$LOGFILE"
+    echo "${VAINFO_RESULT}" >> "$LOGFILE"
 
-if [[ $VAINFO_RESULT == *"Intel iHD driver"* ]]; then
-   sed -i 's/"VideoEncoder" : "x265/"VideoEncoder" : "qsv_h265/g' /presets/*.json
-   sed -i 's/"VideoQSVDecode" : false,/"VideoQSVDecode" : true,/g' /presets/*.json
+if [ -z "${QSV}" ]; then     
+    if [[ $VAINFO_RESULT == *"Intel iHD driver"* ]]; then
+       sed -i 's/"VideoEncoder" : "x265/"VideoEncoder" : "qsv_h265/g' /presets/*.json
+       sed -i 's/"VideoQSVDecode" : false,/"VideoQSVDecode" : true,/g' /presets/*.json
+    fi
 fi
 
 if [ -z "${EXTENSION}" ]; then 
