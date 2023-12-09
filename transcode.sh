@@ -6,6 +6,11 @@ VAINFO_RESULT=$(vainfo)
 echo "====> vainfo output:" >> "$LOGFILE"
 echo "${VAINFO_RESULT}" >> "$LOGFILE"
 
+if [[ $VAINFO_RESULT == *"Intel iHD driver"* ]]; then
+   sed -i 's/"VideoEncoder" : "x265/"VideoEncoder" : "qsv_h265/g' /presets/*.json
+   sed -i 's/"VideoQSVDecode" : false,/"VideoQSVDecode" : true,/g' /presets/*.json
+fi
+
 if [ -z "${EXTENSION}" ]; then 
    EXTENSION=mkv
 fi
@@ -69,9 +74,9 @@ encode_file () {
             fi
         else
             if [ "$AUDIO_CODEC" == "AAC" ]; then
-                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /h265aac${PRESET_SUFFIX}.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
+                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /presets/h265aac${PRESET_SUFFIX}.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
             else
-                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /h265ac3${PRESET_SUFFIX}.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
+                stdbuf -oL -eL HandBrakeCLI -i "$FILE" -o "$TARGET" --preset-import-file /presets/h265ac3${PRESET_SUFFIX}.json --preset "H.265 MP4" -m 2>> "$LOGFILE"
             fi
         fi
         echo "====> Testing $TARGET" >> "$LOGFILE"
