@@ -12,5 +12,7 @@ echo "UID:GID - $PUID:$PGID"
 groupmod -o -g "$PGID" $USER
 usermod -o -u "$PUID" $USER
 
+chown $USER /dev/dri/*
+
 # CMD
 sudo -H -E -u $USER /transcode
