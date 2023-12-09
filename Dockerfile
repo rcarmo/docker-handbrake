@@ -21,6 +21,9 @@ RUN apt-get update \
      handbrake-cli \
      libdvd-pkg \
      ffmpeg \
+     vainfo \
+     i965-va-driver \
+     intel-gpu-tools \
      sudo \
  && dpkg-reconfigure libdvd-pkg \
  && apt-get remove -y \
