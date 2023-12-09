@@ -2,6 +2,8 @@
 
 shopt -s nullglob
 
+echo "====> vainfo output:\n$(vainfo)\n" >> "$LOGFILE"
+
 if [ -z "${EXTENSION}" ]; then 
    EXTENSION=mkv
 fi
